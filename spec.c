@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * get_specifier - finds the format function
- * @s: string of the format
+ * get_specifier - function that finds the format function
+ * @s: string of the formats
  * Return: the number of bytes printed
 */
 
@@ -10,6 +10,7 @@ int (*get_specifier(char *s))(va_list ap, params_t *params)
 
 {
 	specifier_t specifiers[] = {
+
 		{"c", print_char},
 		{"d", print_int},
 		{"i", print_int},
@@ -41,7 +42,7 @@ int (*get_specifier(char *s))(va_list ap, params_t *params)
 }
 
 /**
- * get_print_func - finds the format function
+ * get_print_func - function that finds the format function
  * @s: string of the format
  * @ap: argument pointer
  * @params: the parameters struct
@@ -53,7 +54,9 @@ int get_print_func(char *s, va_list ap, params_t *params)
 	int (*f)(va_list, params_t *) = get_specifier(s);
 
 	if (f)
+	{
 		return (f(ap, params));
+	}
 	return (0);
 }
 
@@ -91,7 +94,7 @@ int get_flag(char *s, params_t *params)
 }
 
 /**
- * get_modifier - finds the modifier function
+ * get_modifier - function finds the modifier function
  * @s: string for format
  * @params: parameter structure
  * Return: if modifier was valid
