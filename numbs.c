@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * convert - converter function, a clone of itoa
- * @num: number
+ * convert - A converter function, a clone of itoa
+ * @num: numbers
  * @base: base
  * @flags: argument flags
  * @params: paramater struct
  *
- * Return: string
+ * Return: string / 0
 */
 char *convert(long int num, int base, int flags, params_t *params)
 {
@@ -49,9 +49,13 @@ int print_unsigned(va_list ap, params_t *params)
 	unsigned long l;
 
 	if (params->l_modifier)
+	{
 		l = (unsigned long)va_arg(ap, unsigned long);
+	}
 	else if (params->h_modifier)
+	{
 		l = (unsigned short int)va_arg(ap, unsigned int);
+	}
 	else
 		l = (unsigned int)va_arg(ap, unsigned int);
 	params->unsign = 1;
@@ -61,7 +65,7 @@ int print_unsigned(va_list ap, params_t *params)
 
 
 /**
- * print_address - prints address
+ * print_address - prints address lists
  * @ap: argument pointer
  * @params: the parameters struct
  *
@@ -73,8 +77,9 @@ int print_address(va_list ap, params_t *params)
 	char *str;
 
 	if (!n)
+	{
 		return (_puts("(nil)"));
-
+	}
 	str = convert(n, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, params);
 	*--str = 'x';
 	*--str = '0';
